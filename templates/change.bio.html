@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change Bio
+{% endblock %}
+
+{% block main %}
+<form action="/change-bio" method="post">
+    <div class="row">
+        <div class="col">
+            <main>
+                <section>
+                    <h1>Changing Bio</h1>
+                    <h6>Changing your bio help others to know you better and more clear!</h6>
+                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/sxobuwft.json"
+                            trigger="loop"
+                            delay="1500"
+                            colors="outline:#537fbe,primary:#2e944b,secondary:#e4e4e4"
+                            style="width:50px;height:50px">
+                        </lord-icon>
+                </section>
+            </main>
+        </div>
+        <div class="col">
+            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+            <lord-icon
+                src="https://cdn.lordicon.com/vufjamqa.json"
+                trigger="hover"
+                colors="primary:#121331"
+                state="hover"
+                style="width:100px;height:100px">
+            </lord-icon>
+            <div class="mb-3">
+                <div class="mb-3">
+                    <textarea autocomplete="off" autofocus class="form-control" style="height: 150px;" name="bio" id="bio" placeholder="Blog ..." required type="text">{{ bio[0]['bio'] }}</textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary">Update Bio To The New One</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

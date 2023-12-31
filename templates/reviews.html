@@ -1,0 +1,180 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reviews
+{% endblock %}
+
+{% block main %}
+
+<!-- Filter -->
+<form action="/filter_reviews" method="POST">
+    <button type="button" id="filter" name="filter" class="btn btn-primary">Filter</button>
+    <br>
+    <div class="form-group d-none">
+      <label for="sort-by">Sort By: </label>
+      <br>
+      <input name="sort-by" type="radio" value="new"> The Newest
+      <br>
+      <input name="sort-by" type="radio" value="famous-reviews"> The Famous Reveiws
+    </div>
+    <br>
+    <div class="form-group d-none">
+      <select id="city" name="city" class="form-control mx-auto w-auto">
+        <option disabled selected>City</option>
+        {% for city in cities %}
+        <option value="{{ city['city'] }}">{{ city['city'] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <br>
+    <div class="form-group d-none">
+      <select id="recommend" name="recommend" class="form-control mx-auto w-auto left-align">
+        <option disabled selected>Recommend</option>
+        <option value="1">Recommended</option>
+        <option value="0">Didn't Recommend</option>
+      </select>
+    </div>
+    <br>
+    <div class="form-group d-none">
+        <button type="submit" class="btn btn-primary">Apply</button>
+    </div>
+  </form>
+
+  <script>
+    // Show/hide options when the "fitter" button is clicked
+    const fitterBtn = document.getElementById("filter");
+    const options = document.querySelectorAll(".form-check, .form-group");
+    options.forEach((option) => {
+      option.classList.add("d-none");
+    }); // Hide all options by default
+    fitterBtn.addEventListener("click", () => {
+      options.forEach((option) => {
+        option.classList.toggle("d-none");
+      });
+    });
+  </script>
+
+
+<!-- Reviews cards -->
+<div class="my-cards-container">
+    {% for experience in experiences %}
+    <div class="my-card" style="width: 380px;height: 500px;">
+        <div class="my-card-body">
+        <h3 class="my-card-title">
+          <form action="/user" method="get">
+            <input name="id" type="hidden" value="{{ experience['user_id'] }}">
+            <button class="btn" type="submit">
+              <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+              <lord-icon
+              src="https://cdn.lordicon.com/bhfjfgqz.json"
+              trigger="hover"
+              colors="primary:#121331"
+              style="width:30px;height:30px">
+              </lord-icon>
+              {{ experience['username'] }}
+            </button>
+          </form>
+          </h4>
+        <h3 class="my-card-title">{{ experience['city'] }}</h3>
+        <h5 class="my-card-text">Title: <span class="my-card-text">{{ experience['title'] }}</span></h5>
+        <hr>
+        <h5 class="left-align">Content: </h5>
+        <span class="my-card-text">{{ experience['content'] }}</span>
+        <hr>
+      </div>
+      <h6 class="my-card-text" style="margin-left: 10px;">Recommend:{% if experience['recommend'] == "False" %}
+        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+        <lord-icon
+            src="https://cdn.lordicon.com/hrqwmuhr.json"
+            trigger="hover"
+            colors="primary:#121331,secondary:#08a88a"
+            style="width:30px;height:30px">
+        </lord-icon>
+        {% else %}
+        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+        <lord-icon
+            src="https://cdn.lordicon.com/hrqwmuhr.json"
+            trigger="hover"
+            colors="primary:#121331,secondary:#08a88a"
+            style="width:30px;height:30px;display:inline-block;transform:rotate(180deg) scaleX(-1);">
+        </lord-icon>
+        {% endif %}
+        <h6 class="my-card-text" style="margin-left: 10px;">Email: <span class="my-card-text">{{ experience['email'] }}</span></h6>
+      </h6>
+        <div class="my-card-footer border-danger">
+          <h6 class="left-align">Time: <span class="my-card-text">{{ experience['time'] }}</span></h6>
+            <div class="form-row">
+                <div class="form-1">
+                    {% if not bool(int(experience['bookmarked'])) %}
+                    <form action="/bookmarked_experience" method="post">
+                        <input name="id" type="hidden" value="{{ experience['id'] }}">
+                        <button id="bookmark" class="btn btn-outline-light btn-sm mx-1 bookmark-btn" title="Bookmark">
+                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                            <lord-icon
+                            src="https://cdn.lordicon.com/gigfpovs.json"
+                            trigger="click"
+                            colors="primary:#121331"
+                            state="morph-1"
+                            style="width:30px;height:30px">
+                            </lord-icon>
+                        </button>
+                    </form>
+                    {% endif %}
+                    {% if bool(int(experience['bookmarked'])) %}
+                    <form action="/bookmarked_experience" method="post">
+                        <input name="id" type="hidden" value="{{ experience['id'] }}">
+                        <button id="bookmark" class="btn btn-outline-light btn-sm mx-1 bookmark-btn" title="Bookmarked">
+                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/eanmttmw.json"
+                                trigger="click"
+                                colors="primary:#121331"
+                                state="hover-2"
+                                style="width:30px;height:30px">
+                            </lord-icon>
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
+                <div class="form-2">
+                    {% if not bool(int(experience['liked'])) %}
+                    <form action="/experience_like" method="post">
+                        <input name="id" type="hidden" value="{{ experience['id'] }}">
+                        <button class="btn btn-outline-light btn-sm mx-1 like-btn" title="Like">
+                            <i class="fa fa-heart">
+                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/pnhskdva.json"
+                                    trigger="click"
+                                    colors="primary:#121331"
+                                    state="morph"
+                                    style="width:30px;height:30px">
+                                </lord-icon>
+                            </i> <span class="like-count">{{ experience['like_count'] }}</span>
+                        </button class="my-card-btn">
+                        </form>
+                        {% elif bool(int(experience['liked']))  %}
+                        <form action="/experience_like" method="post">
+                        <input name="id" type="hidden" value="{{ experience['id'] }}">
+                        <button class="btn btn-outline-light btn-sm mx-1 like-btn" title="Dislike">
+                        <i class="fa fa-heart">
+                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/xryjrepg.json"
+                                trigger="click"
+                                colors="primary:#121331"
+                                state="hover"
+                                style="width:30px;height:30px">
+                            </lord-icon>
+                            </i> <span class="like-count">{{ experience['like_count'] }}</span>
+                            </button class="my-card-btn">
+                        </form>
+                    {% endif %}
+                </div>
+              </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

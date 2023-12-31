@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ info['username'] }}
+{% endblock %}
+
+{% block main %}
+        <div class="main-card" style="width: 1150px;height: 600px;">
+            <div class="main-card-content left-align">
+                <h1 class="center-align"> {{ info['username'] }}</h1>
+                <hr>
+                    <div class="row">
+                        <div class="col">
+                            <main>
+                                <section class="center-align">
+                                    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                    <lord-icon
+                                    src="https://cdn.lordicon.com/bhfjfgqz.json"
+                                    trigger="hover"
+                                    colors="primary:#121331"
+                                    style="width:100px;height:100px">
+                                    </lord-icon>
+                                </section>
+                            </main>
+                        </div>
+                        <div class="col">
+                            <aside class="form-group" style="margin-top: 25px;">
+                                <div class="mb-3">
+                                    <h3>{{ info['name'] }} {{ info['family'] }}</h3>
+                                </div>
+                                <hr>
+                                <div class="mb-3">
+                                    <h3>
+                                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                        <lord-icon
+                                            src="https://cdn.lordicon.com/diihvcfp.json"
+                                            trigger="hover"
+                                            colors="primary:#121331"
+                                            style="width:40px;height:40px">
+                                        </lord-icon>
+                                        : {{ info['email'] }}</h3>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                    <div class="mb-3 left-align" style="margin-top: 45px;">
+                        <li><label for="bio"><h4>Bio:</h4></label></li>
+                        {% if info['bio'] is none %}
+                        <h5>Get to know this user better! Encourage them to add more information to their profile.</h5>
+                        {% else %}
+                        <h5 id="bio">{{ info['bio'] }}</h5>
+                        {% endif %}
+                        </div>
+                </div>
+            </div>
+{% endblock %}

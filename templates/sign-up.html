@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sign In
+{% endblock %}
+
+{% block main %}
+<form action="/signup" method="post">
+    <div class="row">
+        <div class="col">
+            <main>
+                <section>
+                    <h1>Welcome To Travle Time!</h1>
+                    <h6>Connection with other travelers
+                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/zpxybbhl.json"
+                            trigger="loop"
+                            colors="primary:#121331,secondary:#f5b82e"
+                            style="width:30px;height:30px">
+                        </lord-icon>
+                    </h6>
+                    <h6>It supposed to help to finding the best vacations
+                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/vxiujhli.json"
+                            trigger="loop"
+                            delay="2000"
+                            colors="primary:#537fbe,secondary:#2e944b"
+                            style="width:30px;height:30px">
+                        </lord-icon>
+                    </h6>
+                        <h6>Share your experiences
+                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/wxhtpnnk.json"
+                                trigger="loop"
+                                colors="primary:#121331"
+                                style="width:25px;height:25px">
+                            </lord-icon>
+                        </h6>
+                </section>
+            </main>
+        </div>
+        <div class="col">
+            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+            <lord-icon
+                src="https://cdn.lordicon.com/dxjqoygy.json"
+                trigger="hover"
+                colors="primary:#121331,secondary:#f5b82e"
+                state="hover-looking-around"
+                style="width:100px;height:100px">
+            </lord-icon>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control {{value_username}} mx-auto w-auto" id="username" name="username" placeholder="Username" required type="text">
+                <div class="invalid-feedback">Try Another Username!</div>
+            </div>
+            <div class="group-form">
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="firstname" name="firstname" placeholder="First Name" required type="text">
+                </div>
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="lastname" name="lastname" placeholder="Last Name" required type="text">
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control {{value_email}} mx-auto w-auto" id="email" name="email" placeholder="Email" required type="email">
+                    <div class="invalid-feedback">This Email Adderss Has Already Used!</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="mb-3">
+                <input class="form-control {{value_password}} mx-auto w-auto" id="password" name="password" placeholder="Password" required type="password">
+                </div>
+            </div>
+            <div class="mb-3">
+                <input class="form-control {{value_password}} mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Password (again)" required type="password">
+                <div class="invalid-feedback">Not Found Match!</div>
+            </div>
+            <button class="btn btn-primary">Sign In</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

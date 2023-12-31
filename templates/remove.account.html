@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Remove Account
+{% endblock %}
+
+{% block main %}
+<form action="/remove" method="post">
+    <div class="row">
+        <div class="col">
+            <main>
+                <section>
+                    <h1>Removing Account</h1>
+                    <h3>Warning:</h3>
+                    <h6>Deleting your account is permanent and cannot be undone. This action will delete all of your information and activities associated with this account, and you will not be able to log in again!</h6>
+                    <h6>Note that once you delete your account, we will not be able to recover any of your data. If you have any important information or data associated with your account, please make sure to back it up before proceeding.</h6>
+                    <h3>Reasons:</h3>
+                    <h6>We understand that there may be many reasons why you might want to delete your account, such as no longer using our service, or wanting to protect your personal data. Whatever your reason, we want to make sure that you have control over your data and feel comfortable using our service and also this ability will protect your data.</h6>
+                    <h6>If a user's account is inactive, keeping their data on your server can be a waste of storage space and can also pose a security risk. By allowing users to delete their accounts, you can reduce the amount of data you need to store and lower the risk of data breaches.</h6>
+                </section>
+            </main>
+        </div>
+        <div class="col">
+            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+            <lord-icon
+                src="https://cdn.lordicon.com/jmkrnisz.json"
+                trigger="loop"
+                delay="1000"
+                colors="primary:#121331"
+                style="width:150px;height:150px">
+            </lord-icon>
+            <div class="mb-3">
+            </div>
+            <div class="mb-3">
+                <div class="mb-3">
+                <input class="form-control {{value_password}} mx-auto w-auto" id="password" name="password" placeholder="Password" required type="password">
+                <div class="invalid-feedback">Invalid Password</div>
+                <label for="delete-checkbox">I want to remove my account </label>
+                <input class="form-check-input" type="checkbox" id="delete-checkbox" onchange="toggleRemoveButton()">
+                <script>
+                    function toggleRemoveButton() {
+                    var checkbox = document.getElementById("delete-checkbox");
+                    var button = document.getElementById("remove-button");
+
+                    if (checkbox.checked == true) {
+                        button.disabled = false;
+                    } else {
+                        button.disabled = true;
+                    }
+                    }
+                </script>
+                </div>
+            </div>
+            <button class="btn btn-danger" type="submit" id="remove-button" disabled>Remove Account</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

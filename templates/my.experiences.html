@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+{% if experiences %}
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th class="text-start">Title</th>
+            <th class="text-start">Time</th>
+            <th class="text-start">City</th>
+            <th class="text-start">Content</th>
+            <th class="text-start">Remove</th>
+            <th class="text-start">Recommend</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for experience in experiences %}
+        <tr>
+            <td class="text-start">{{ experience["title"] }}</td>
+            <td class="text-start">{{ experience["time"] }}</td>
+            <td class="text-start">{{ experience["city"] }}</td>
+            <td class="text-end">
+                <form action="/my-experiences" class="center-align" style="margin-top: 5px;" method="post">
+                    <textarea autocomplete="off" autofocus class="form-control mx-auto w-auto" style="height: 95px;" name="new" id="new" placeholder="Content" required type="text">{{ experience['content'] }}</textarea>
+                    <input name="id" type="hidden" value="{{ experience['id'] }}">
+                    <button class="btn btn-primary center-align" style="margin-top: 10px;" type="submit">Edit</button>
+                </form>
+            </td>
+            <td class="center-align">
+                <form action="/my-experiences" class="center-align" style="margin-top: 10px;" method="post">
+                    <input name="remove" type="hidden" value="{{ experience['id'] }}">
+                    <button class="btn btn-danger">Remove</button>
+                </form>
+            </td>
+            {% if experience["recommend"] == "True" %}
+            <td class="center-align">Yes!</td>
+            {% else %}
+            <td class="center-align">No!</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h1 class="center-align">You don't have shared any experience yet!</h1>
+{% endif %}
+{% endblock %}

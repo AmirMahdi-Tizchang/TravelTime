@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Share Experiences
+{% endblock %}
+
+{% block main %}
+    <form action="/share" method="POST">
+        <div class="main-card">
+            <div class="main-card-content">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="title" name="title" placeholder="Title" required type="text">
+                    <br>
+                    <div>
+                        <select id="city" name="city" class="form-control mx-auto w-auto">
+                            <option disabled selected>city</option>
+                            {% for city in cities %}
+                            <option value="{{ city['city'] }}">{{ city["city"] }}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+                        <br>
+                        <textarea autocomplete="off" autofocus class="form-control" style="height: 150px;" name="content" id="content" placeholder="Content ..." required type="text"></textarea>
+                        <br>
+                        <label for="recommend">Recommend: </label>
+                        <br>
+                        <input name="recommend" type="radio" required value="True"> <span class="green">Yes, I had an absolutely amazing time on my trip</span>
+                        <br>
+                        <input name="recommend" type="radio" required value="False"> <span class="red">No, my trip wasn't really good, and I'm disappointed with my experience.</span>
+                        <br>
+                        <button type="submit" class="btn btn-primary" title="Share this experience with other members!" style="margin-top: 25px;">Share</button>
+                </div>
+            </div>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,183 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ vacation['city'] }}
+{% endblock %}
+
+{% block main %}
+    <div class="main-card">
+        <div class="row">
+            <div class="col">
+                <main>
+                    <section>
+                        <img src="{{ vacation['image_url'] }}" class="main-card-img" alt="Vacation image">
+                        <br>
+                        <div style="margin-top: 45px;">
+                            <div class="form-row">
+                                <div class="form-1">
+                                    {% if not bool(int(vacation['bookmarked'])) %}
+                                    <form action="/vacation_bookmark" method="post">
+                                        <input name="id" type="hidden" value="{{ vacation['id'] }}">
+                                        <button id="bookmark" class="btn btn-outline-light btn-sm mx-1 bookmark-btn" title="Bookmark">
+                                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                            <lord-icon
+                                            src="https://cdn.lordicon.com/gigfpovs.json"
+                                            trigger="click"
+                                            colors="primary:#121331"
+                                            state="morph-1"
+                                            style="width:30px;height:30px">
+                                            </lord-icon>
+                                        </button>
+                                    </form>
+                                    {% elif bool(int(vacation['bookmarked'])) %}
+                                    <form action="/vacation_bookmark" method="post">
+                                        <input name="id" type="hidden" value="{{ vacation['id'] }}">
+                                        <button id="bookmark" class="btn btn-outline-light btn-sm mx-1 bookmark-btn" title="Bookmarked">
+                                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                            <lord-icon
+                                                src="https://cdn.lordicon.com/eanmttmw.json"
+                                                trigger="click"
+                                                colors="primary:#121331"
+                                                state="hover-2"
+                                                style="width:30px;height:30px">
+                                            </lord-icon>
+                                        </button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                                <div class="form-2">
+                                    {% if not bool(int(vacation['liked'])) %}
+                                    <form action="/vacation_like" method="post">
+                                        <input name="id" type="hidden" value="{{ vacation['id'] }}">
+                                        <button class="btn btn-outline-light btn-sm mx-1 like-btn" title="Like">
+                                            <i class="fa fa-heart">
+                                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                                <lord-icon
+                                                    src="https://cdn.lordicon.com/pnhskdva.json"
+                                                    trigger="click"
+                                                    colors="primary:#121331"
+                                                    state="morph"
+                                                    style="width:30px;height:30px">
+                                                </lord-icon>
+                                            </i> <span class="like-count">{{ vacation['like_count'] }}</span>
+                                        </button>
+                                        </form>
+                                        {% elif bool(int(vacation['liked'])) %}
+                                        <form action="/vacation_like" method="post">
+                                        <input name="id" type="hidden" value="{{ vacation['id'] }}">
+                                        <button class="btn btn-outline-light btn-sm mx-1 like-btn" title="Dislike">
+                                        <i class="fa fa-heart">
+                                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                            <lord-icon
+                                                src="https://cdn.lordicon.com/xryjrepg.json"
+                                                trigger="click"
+                                                colors="primary:#121331"
+                                                state="hover"
+                                                style="width:30px;height:30px">
+                                            </lord-icon>
+                                            </i> <span class="like-count">{{ vacation['like_count'] }}</span>
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                          </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+            <div class="col">
+                <div class="main-card-content">
+                    <h3 class="left-align">{{ vacation['city'] }}</h3>
+                    <br>
+                    <h6 class="left-align">
+                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/jqnthkou.json"
+                            trigger="loop"
+                            delay="500"
+                            colors="primary:#121331,secondary:#109173"
+                            style="width:30px;height:30px">
+                        </lord-icon>
+                         <b>Country:</b><span class="my-card-text"> {{ vacation['country'] }}</span></h6>
+                    <h6 class="left-align"><script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/hciqteio.json"
+                            trigger="loop"
+                            delay="500"
+                            colors="primary:#110a5c,secondary:#b4b4b4"
+                            style="width:30px;height:30px">
+                        </lord-icon>
+                         <b>Continent:</b><span class="my-card-text"> {{ vacation['continent'] }}</span></h6>
+                    <h6 class="left-align"><script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/gqdnbnwt.json"
+                            trigger="loop"
+                            delay="2000"
+                            colors="primary:#121331,secondary:#08a88a"
+                            style="width:30px;height:30px">
+                        </lord-icon>
+                         <b>Type Of Vacation:</b><span class="my-card-text"> {{ vacation['type'] }}</span></h6>
+                    <h6 class="left-align">
+                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wcjauznf.json"
+                            trigger="loop"
+                            delay="1000"
+                            colors="primary:#30c9e8,secondary:#08a88a"
+                            style="width:30px;height:30px">
+                        </lord-icon>
+                        <b>Weather:</b><span class="my-card-text"> {{ vacation['weather'] }}</span></h6>
+                    <h6 class="left-align"><script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wxnxiano.json"
+                            trigger="loop"
+                            delay="100"
+                            colors="primary:#ee8f66,secondary:#c71f16"
+                            state="loop"
+                            style="width:30px;height:30px">
+                        </lord-icon>
+                        <b>Description:</b><span class="my-card-text"> {{ vacation['description'] }}</span></h6>
+                    <h6 class="left-align"><script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/hhuxpesi.json"
+                            trigger="loop"
+                            delay="2000"
+                            colors="primary:#08a88a,secondary:#121331"
+                            style="width:35px;height:35px">
+                        </lord-icon>
+                        <b>Attractions:</b><span class="my-card-text"> {{ vacation['attractions'] }}</span></h6>
+                    <h6 class="left-align"><script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/jjjmlddk.json"
+                            trigger="loop"
+                            delay="500"
+                            colors="primary:#c67d53,secondary:#848484"
+                            style="width:35px;height:35px">
+                        </lord-icon>
+                        <b>Activities:</b><span class="my-card-text"> {{ vacation['activities'] }}</span></h6>
+                    <h6 class="left-align"><script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/coqbeapw.json"
+                            trigger="loop"
+                            delay="1000"
+                            colors="primary:#794628,secondary:#c74b16"
+                            style="width:30px;height:30px">
+                        </lord-icon>
+                        <b>Famous Foods:</b><span class="my-card-text"> {{ vacation['famous_foods'] }}</span></h6>
+                    <h6 class="left-align"><script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/poblyvkl.json"
+                            trigger="loop"
+                            delay="100"
+                            colors="primary:#16c72e,secondary:#121331"
+                            style="width:30px;height:30px">
+                        </lord-icon>
+                        <b>Local Cuisine:</b><span class="my-card-text"> {{ vacation['local_cuisine'] }}</span></h6>
+                         <br>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+{% endblock %}

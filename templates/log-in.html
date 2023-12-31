@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/login" method="post">
+
+        <div class="row">
+            <div class="col">
+                <main>
+                    <section>
+                        <h1>Welcome Back!</h1>
+                        <h4>Travel Time helps you find the best destinations for your journeys</h4>
+                        <h6>by contacting other travelers
+                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/zpxybbhl.json"
+                                trigger="loop"
+                                colors="primary:#121331,secondary:#f5b82e"
+                                style="width:30px;height:30px">
+                            </lord-icon>
+                        </h6>
+                        <h6>Access to information on over 60 vacations around the world
+                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/zzcjjxew.json"
+                                trigger="loop"
+                                colors="primary:#2e944b,secondary:#537fbe"
+                                style="width:30px;height:30px">
+                            </lord-icon>
+                        </h6>
+                            <h6>Share your own experiences with others
+                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/wxhtpnnk.json"
+                                    trigger="loop"
+                                    colors="primary:#121331"
+                                    style="width:25px;height:25px">
+                                </lord-icon>
+                            </h6>
+                        </section>
+                </main>
+            </div>
+            <div class="col">
+                <aside class="form-group">
+                    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                    <lord-icon
+                    src="https://cdn.lordicon.com/bhfjfgqz.json"
+                    trigger="hover"
+                    colors="primary:#121331"
+                    style="width:100px;height:100px">
+                    </lord-icon>
+                    <div class="mb-3">
+                        <input autocomplete="off" autofocus class="form-control {{value_email}} mx-auto w-auto" id="email" name="email" placeholder="Email" type="email">
+                        <div class="invalid-feedback">Account Not found!</div>
+                        </div>
+                    <div class="mb-3">
+                        <input class="form-control {{value_password}} mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+                        <div class="invalid-feedback">Invalid password!</div>
+                        <a href="/reset">Forgot password?</a>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Log In</button>
+                    </aside>
+                </div>
+        </div>
+    </form>
+{% endblock %}

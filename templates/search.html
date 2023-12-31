@@ -1,0 +1,223 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+        <!-- Vacation cards -->
+        <div class="my-cards-container">
+            {% for vacation in vacations %}
+            <div class="my-card">
+                <img src="{{ vacation['image_url'] }}" class="my-card-img" alt="Card image">
+                <div class="my-card-body">
+                <h3 class="my-card-title">{{ vacation['city'] }}</h3>
+                <h5 class="left-align">Country: <span class="my-card-text">{{ vacation['country'] }}</span></h5>
+                <h5 class="left-align">Continent: <span class="my-card-text">{{ vacation['continent'] }}</span></h5>
+                <h5 class="left-align">Description: <span class="my-card-text">{{ vacation['description'] }}</span></h5>
+                </div>
+                <div class="my-card-footer border-danger">
+                    <div class="form-row">
+                        <div class="form-1">
+                            {% if not bool(int(vacation['bookmarked'])) %}
+                            <form action="/vacation_bookmark" method="post">
+                                <input name="id" type="hidden" value="{{ vacation['id'] }}">
+                                <button id="bookmark" class="btn btn-outline-light btn-sm mx-1 bookmark-btn" title="Bookmark">
+                                    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                    <lord-icon
+                                    src="https://cdn.lordicon.com/gigfpovs.json"
+                                    trigger="click"
+                                    colors="primary:#121331"
+                                    state="morph-1"
+                                    style="width:30px;height:30px">
+                                    </lord-icon>
+                                </button>
+                            </form>
+                            {% endif %}
+                            {% if bool(int(vacation['bookmarked'])) %}
+                            <form action="/vacation_bookmark" method="post">
+                                <input name="id" type="hidden" value="{{ vacation['id'] }}">
+                                <button id="bookmark" class="btn btn-outline-light btn-sm mx-1 bookmark-btn" title="Bookmarked">
+                                    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                    <lord-icon
+                                        src="https://cdn.lordicon.com/eanmttmw.json"
+                                        trigger="click"
+                                        colors="primary:#121331"
+                                        state="hover-2"
+                                        style="width:30px;height:30px">
+                                    </lord-icon>
+                                </button>
+                            </form>
+                            {% endif %}
+                        </div>
+                        <div class="form-2">
+                            {% if not bool(int(vacation['liked'])) %}
+                            <form action="/vacation_like" method="post">
+                                <input name="id" type="hidden" value="{{ vacation['id'] }}">
+                                <button class="btn btn-outline-light btn-sm mx-1 like-btn" title="Like">
+                                    <i class="fa fa-heart">
+                                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                        <lord-icon
+                                            src="https://cdn.lordicon.com/pnhskdva.json"
+                                            trigger="click"
+                                            colors="primary:#121331"
+                                            state="morph"
+                                            style="width:30px;height:30px">
+                                        </lord-icon>
+                                    </i> <span class="like-count">{{ vacation['like_count'] }}</span>
+                                </button class="my-card-btn">
+                                </form>
+                                {% elif bool(int(vacation['liked']))  %}
+                                <form action="/vacation_like" method="post">
+                                <input name="id" type="hidden" value="{{ vacation['id'] }}">
+                                <button class="btn btn-outline-light btn-sm mx-1 like-btn" title="Dislike">
+                                <i class="fa fa-heart">
+                                    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                    <lord-icon
+                                        src="https://cdn.lordicon.com/xryjrepg.json"
+                                        trigger="click"
+                                        colors="primary:#121331"
+                                        state="hover"
+                                        style="width:30px;height:30px">
+                                    </lord-icon>
+                                    </i> <span class="like-count">{{ vacation['like_count'] }}</span>
+                                    </button class="my-card-btn">
+                                </form>
+                            {% endif %}
+                        </div>
+                      </div>
+                        <div class="form-3">
+                            <form action="/info" method="post">
+                            <input name="id" type="hidden" value="{{ vacation['id'] }}">
+                            <button class="my-card-btn btn btn-primary" title="Get more informations about this vacation!" data-toggle="modal" data-target="#myModal">Read more</button class="my-card-btn">
+                            </form>
+                        </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Reviews cards -->
+<div class="my-cards-container">
+    {% for experience in experiences %}
+    <div class="my-card" style="width: 380px;height: 500px;">
+        <div class="my-card-body">
+        <h3 class="my-card-title">
+          <form action="/user" method="get">
+            <input name="id" type="hidden" value="{{ experience['user_id'] }}">
+            <button class="btn" type="submit">
+              <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+              <lord-icon
+              src="https://cdn.lordicon.com/bhfjfgqz.json"
+              trigger="hover"
+              colors="primary:#121331"
+              style="width:30px;height:30px">
+              </lord-icon>
+              {{ experience['username'] }}
+            </button>
+          </form>
+          </h4>
+        <h3 class="my-card-title">{{ experience['city'] }}</h3>
+        <h5 class="my-card-text">Title: <span class="my-card-text">{{ experience['title'] }}</span></h5>
+        <hr>
+        <h5 class="left-align">Content: </h5>
+        <span class="my-card-text">{{ experience['content'] }}</span>
+        <hr>
+      </div>
+      <h6 class="my-card-text" style="margin-left: 10px;">Recommend:{% if experience['recommend'] == "False" %}
+        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+        <lord-icon
+            src="https://cdn.lordicon.com/hrqwmuhr.json"
+            trigger="hover"
+            colors="primary:#121331,secondary:#08a88a"
+            style="width:30px;height:30px">
+        </lord-icon>
+        {% else %}
+        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+        <lord-icon
+            src="https://cdn.lordicon.com/hrqwmuhr.json"
+            trigger="hover"
+            colors="primary:#121331,secondary:#08a88a"
+            style="width:30px;height:30px;display:inline-block;transform:rotate(180deg) scaleX(-1);">
+        </lord-icon>
+        {% endif %}
+        <h6 class="my-card-text" style="margin-left: 10px;">Email: <span class="my-card-text">{{ experience['email'] }}</span></h6>
+      </h6>
+        <div class="my-card-footer border-danger">
+          <h6 class="left-align">Time: <span class="my-card-text">{{ experience['time'] }}</span></h6>
+            <div class="form-row">
+                <div class="form-1">
+                    {% if not bool(int(experience['bookmarked'])) %}
+                    <form action="/bookmarked_experience" method="post">
+                        <input name="id" type="hidden" value="{{ experience['id'] }}">
+                        <button id="bookmark" class="btn btn-outline-light btn-sm mx-1 bookmark-btn" title="Bookmark">
+                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                            <lord-icon
+                            src="https://cdn.lordicon.com/gigfpovs.json"
+                            trigger="click"
+                            colors="primary:#121331"
+                            state="morph-1"
+                            style="width:30px;height:30px">
+                            </lord-icon>
+                        </button>
+                    </form>
+                    {% endif %}
+                    {% if bool(int(experience['bookmarked'])) %}
+                    <form action="/bookmarked_experience" method="post">
+                        <input name="id" type="hidden" value="{{ experience['id'] }}">
+                        <button id="bookmark" class="btn btn-outline-light btn-sm mx-1 bookmark-btn" title="Bookmarked">
+                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/eanmttmw.json"
+                                trigger="click"
+                                colors="primary:#121331"
+                                state="hover-2"
+                                style="width:30px;height:30px">
+                            </lord-icon>
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
+                <div class="form-2">
+                    {% if not bool(int(experience['liked'])) %}
+                    <form action="/experience_like" method="post">
+                        <input name="id" type="hidden" value="{{ experience['id'] }}">
+                        <button class="btn btn-outline-light btn-sm mx-1 like-btn" title="Like">
+                            <i class="fa fa-heart">
+                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                <lord-icon
+                                    src="https://cdn.lordicon.com/pnhskdva.json"
+                                    trigger="click"
+                                    colors="primary:#121331"
+                                    state="morph"
+                                    style="width:30px;height:30px">
+                                </lord-icon>
+                            </i> <span class="like-count">{{ experience['like_count'] }}</span>
+                        </button class="my-card-btn">
+                        </form>
+                        {% elif bool(int(experience['liked']))  %}
+                        <form action="/experience_like" method="post">
+                        <input name="id" type="hidden" value="{{ experience['id'] }}">
+                        <button class="btn btn-outline-light btn-sm mx-1 like-btn" title="Dislike">
+                        <i class="fa fa-heart">
+                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/xryjrepg.json"
+                                trigger="click"
+                                colors="primary:#121331"
+                                state="hover"
+                                style="width:30px;height:30px">
+                            </lord-icon>
+                            </i> <span class="like-count">{{ experience['like_count'] }}</span>
+                            </button class="my-card-btn">
+                        </form>
+                    {% endif %}
+                </div>
+              </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+    </div>
+
+
+{% endblock %}

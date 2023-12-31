@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change Username
+{% endblock %}
+
+{% block main %}
+<form action="/change-username" method="post">
+    <div class="row">
+        <div class="col">
+            <main>
+                <section>
+                    <h1>Changing Username</h1>
+                    <h6>Changing your username with a new one is possible but keep that in mind, the each username is unique and should not be repeated!</h6>
+                        <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                        <lord-icon
+                            src="https://cdn.lordicon.com/sxobuwft.json"
+                            trigger="loop"
+                            delay="1500"
+                            colors="outline:#537fbe,primary:#2e944b,secondary:#e4e4e4"
+                            style="width:50px;height:50px">
+                        </lord-icon>
+                </section>
+            </main>
+        </div>
+        <div class="col">
+            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+            <lord-icon
+                src="https://cdn.lordicon.com/dxjqoygy.json"
+                trigger="hover"
+                colors="primary:#121331,secondary:#f5b82e"
+                state="hover-looking-around"
+                style="width:100px;height:100px">
+            </lord-icon>
+            <div class="mb-3">
+                <div class="mb-3">
+                    <input autocomplete="off" autofocus class="form-control {{value_username}} mx-auto w-auto" id="username" name="username" placeholder="You New Username" required type="text">
+                    <div class="invalid-feedback">This Username Has Already Taken!</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="mb-3">
+                <input class="form-control {{value_password}} mx-auto w-auto" id="password" name="password" placeholder="Password" required type="password">
+                <div class="invalid-feedback">Invalid Password</div>
+                </div>
+            </div>
+            <button class="btn btn-primary">Change Email</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
