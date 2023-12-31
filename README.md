@@ -10,6 +10,10 @@ This is a web application that allows users to find travel destinations and read
 
 The back-end of the website is built using Python, with the Flask framework for the server. The front-end is built using HTML and CSS, with the Bootstrap framework for easy styling. The database used is SQLite, which allows for efficient storage and retrieval of data.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## Features
 
 ### Sign-up Page
