@@ -1,6 +1,7 @@
 # Travel Time
 
-#### Video Demo:  https://www.youtube.com/watch?v=l3ZJIOgAwcg
+#### Website URL: https://traveltime.onrender.com/
+sign up for free and find the best destinations for your journeys!
 
 # Travel Time
 
