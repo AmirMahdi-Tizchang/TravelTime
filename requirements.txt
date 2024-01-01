@@ -4,3 +4,4 @@ Flask-Session
 requests
 Flask_Mail
 gunicorn==20.1.0
+Werkzeug==2.0.2
