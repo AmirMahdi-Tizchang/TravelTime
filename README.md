@@ -59,3 +59,7 @@ In the future, we plan to add additional features to the website to further enha
 ## Conclusion
 
 Overall, this travel reviews website is a valuable resource for anyone looking to plan a trip. The user-friendly interface and features make it easy for users to find and share information about various travel destinations. By utilizing the latest technologies and focusing on user experience and security, the website is able to efficiently store and retrieve data, making it a reliable and efficient tool for travelers.
+
+# My Blog
+Read a little about me on -> https://amirmahdi-tizchang.github.io/blog/
+Let's get know each other!
