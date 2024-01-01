@@ -1,5 +1,6 @@
 cs50
-Flask
+Flask==2.1.0
 Flask-Session
 requests
 Flask_Mail
+gunicorn==20.1.0
